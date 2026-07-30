@@ -2,10 +2,12 @@ pub mod bridge;
 pub mod commands;
 pub mod discord;
 pub mod http;
+pub mod http_api;
 pub mod logging;
 pub mod mcp;
 pub mod mpd;
-pub mod http_api;
+#[cfg(target_os = "linux")]
+pub mod mpris;
 pub mod net;
 mod setup;
 pub mod stream_server;
@@ -78,6 +80,8 @@ pub fn run() {
             mcp::init_mcp(app.handle().clone());
             mpd::init_mpd(app.handle().clone());
             http_api::init_http_api(app.handle().clone());
+            #[cfg(target_os = "linux")]
+            mpris::init_mpris(app.handle().clone());
             stream_server::init_stream_server(app.handle().clone());
             discord::init_discord(app.handle().clone());
 

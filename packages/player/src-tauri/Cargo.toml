@@ -54,3 +54,6 @@ tauri-plugin-process = "2"
 [target.'cfg(any(target_os = "macos", windows, target_os = "linux"))'.dependencies]
 tauri-plugin-window-state = "2.4.1"
 
+[target.'cfg(target_os = "linux")'.dependencies]
+mpris-server = { version = "0.10", features = ["tokio"] }
+
